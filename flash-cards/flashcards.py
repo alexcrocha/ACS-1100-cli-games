@@ -1,11 +1,16 @@
 import json
+import random
 
-def load_capitals(file):
+deck = 'me-capitals.json'
+
+def load_deck(file):
     with open(file, 'r') as f:
-        return json.load(f)
+        return list(json.load(f)["cards"])
 
-data = load_capitals('me-capitals.json')
+data = load_deck(deck)
 
+def randomize_data(data):
+    random.shuffle(data)
 
 def ask_question(question, answer):
     guess = input(f'{question} > ')
@@ -31,11 +36,12 @@ def play_again():
 
 def start_game(data):
     # initialize total as the length of the cards array
-    total = len(data["cards"])
+    total = len(data)
     # initialize score as 0
     score = 0
+    randomize_data(data)
 
-    for i in data["cards"]:
+    for i in data:
         result = ask_question(i["q"], i["a"])
 
         if result == True:
@@ -57,7 +63,6 @@ print('Game Over')
 
 # Stretch Challenges:
 
-# Randomize the order of questions.
 # Keep playing until the player gets all the questions right at least once.
 # Keep playing until the player answers correctly 10 in a row.
 # Create various data files that are different sets of questions and let people pick which one they want to do.
