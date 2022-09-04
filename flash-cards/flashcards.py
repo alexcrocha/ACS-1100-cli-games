@@ -1,7 +1,10 @@
 import json
 
-with open('me-capitals.json', 'r') as f:
-    data = json.load(f)
+def load_capitals(file):
+    with open(file, 'r') as f:
+        return json.load(f)
+
+data = load_capitals('me-capitals.json')
 
 # initialize total as the length of the cards array
 total = len(data["cards"])
@@ -32,9 +35,7 @@ else:
 # Stretch Challenges:
 
 # Use functions to organize your code.
-    # Use a function to read the data file.
-        # This function might take the file path as a parameter
-        # And return the data that was loaded
+
     # Use a function to display the next question
         # This function might take the question and the answer as a parameter
         # And return True or False if the question was answered correctly
