@@ -11,10 +11,18 @@ total = len(data["cards"])
 # initialize score as 0
 score = 0
 
-for i in data["cards"]:
-    guess = input(f'{i["q"]} > ')
+def ask_question(question, answer):
+    guess = input(f'{question} > ')
 
-    if guess.lower() == i["a"].lower():
+    if guess.lower() == answer.lower():
+        return True
+    else:
+        return False
+
+for i in data["cards"]:
+    result = ask_question(i["q"], i["a"])
+
+    if result == True:
         # increment score up one
         score += 1
         # interpolate score and total into the response
@@ -32,13 +40,18 @@ else:
     print('You need practice...')
 
 
+
 # Stretch Challenges:
 
 # Use functions to organize your code.
 
-    # Use a function to display the next question
-        # This function might take the question and the answer as a parameter
-        # And return True or False if the question was answered correctly
     # Write a function to display game messages
         # You might have a function to display a starting message
         # You might have a function to display an end game message
+
+# Ask them if they want to play again at the end.
+# Randomize the order of questions.
+# Keep playing until the player gets all the questions right at least once.
+# Keep playing until the player answers correctly 10 in a row.
+# Create various data files that are different sets of questions and let people pick which one they want to do.
+# Let people enter their own cards and save those as libraries of questions and answers.
