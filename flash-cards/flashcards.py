@@ -19,6 +19,15 @@ def ask_question(question, answer):
     else:
         return False
 
+def end_game(score, total):
+    print(f'Thanks for playing! You scored: {score} out of {total} correct!')
+    if score == total:
+        print('Amazing...')
+    elif score > total/2:
+        print('Good work...')
+    else:
+        print('You need practice...')
+
 for i in data["cards"]:
     result = ask_question(i["q"], i["a"])
 
@@ -31,13 +40,7 @@ for i in data["cards"]:
         print(f'Incorrect! The correct answer was {i["a"]}')
         print(f'Current score: {score}/{total}')
 
-print(f'Thanks for playing! You scored: {score} out of {total} correct!')
-if score == total:
-    print('Amazing...')
-elif score > total/2:
-    print('Good work...')
-else:
-    print('You need practice...')
+end_game(score,total)
 
 
 
