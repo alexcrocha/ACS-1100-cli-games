@@ -4,25 +4,24 @@ with open('me-capitals.json', 'r') as f:
     data = json.load(f)
 
 # initialize total as the length of the cards array
-total = json.load(f)
+total = len(data["cards"])
 # initialize score as 0
 score = 0
 
 for i in data["cards"]:
-    guess = input(i["q"] + " > ")
+    guess = input(f'{i["q"]} > ')
 
     if guess.lower() == i["a"].lower():
         # increment score up one
         score += 1
         # interpolate score and total into the response
-        print(f"Correct! Current score: {score}/{total}")
+        print(f'Correct! Current score: {score}/{total}')
     else:
-        print("Incorrect! The correct answer was", i["a"])
-        print(f"Current score: {score}/{total}")
+        print(f'Incorrect! The correct answer was {i["a"]}')
+        print(f'Current score: {score}/{total}')
 
 
 # Stretch Challenges:
-# f-strings - Can you use f-strings to change how we do string interpolations throughout this program?
 # End game message - print a message when the game ends, something like: "Thanks for playing! You scored: 4 out five correct!"
     # To find the number of questions len() to count the cards array.
     # Modify the message based on the score:
