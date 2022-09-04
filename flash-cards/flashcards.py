@@ -20,14 +20,17 @@ for i in data["cards"]:
         print(f'Incorrect! The correct answer was {i["a"]}')
         print(f'Current score: {score}/{total}')
 
+print(f'Thanks for playing! You scored: {score} out of {total} correct!')
+if score == total:
+    print('Amazing...')
+elif score > total/2:
+    print('Good work...')
+else:
+    print('You need practice...')
+
 
 # Stretch Challenges:
-# End game message - print a message when the game ends, something like: "Thanks for playing! You scored: 4 out five correct!"
-    # To find the number of questions len() to count the cards array.
-    # Modify the message based on the score:
-        # Less than half correct: "You need practice..."
-        # More than half correct: "Good work..."
-        # All correct: "Amazing..."
+
 # Use functions to organize your code.
     # Use a function to read the data file.
         # This function might take the file path as a parameter
