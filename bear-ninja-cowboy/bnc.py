@@ -54,14 +54,14 @@ def start_game():
             print("DRAW!")
         elif computer == "Cowboy":
             if player == "Bear":
-                print("You lose!", computer, "shoots", player)
+                print("You lose!", player, "is shot by", computer)
                 score = new_score(score, -1)
             else:
-                print("You win!", player, "defeats", computer)
+                print("You win!", player, "eats", computer)
                 score = new_score(score, 1)
         elif computer == "Bear":
             if player == "Cowboy":
-                print("You win!", player, "is eaten by", computer)
+                print("You win!", player, "shoots", computer)
                 score = new_score(score, 1)
             else:
                 print("You lose!", player, "is eaten by", computer)
