@@ -2,19 +2,21 @@ from random import randint
 
 roles = ["Bear", "Ninja", "Cowboy"]
 
-
+# Ask for instructions when the game loads for the first time
 def instructions():
     response = input("Would you like instructions? (Y/N) > ")
     if response.lower() == "y" or response.lower() == "yes":
         print(
-            "\nBear, Ninja, Cowboy is an exciting game of strategy and skill! Pit your wit against the computer! Choose a player: Bear, Ninja, or Cowboy. The computer chooses a player. Bear eats Ninja, Ninja defeats Cowboy and cowboy shoots bear."
+            "\nBear, Ninja, Cowboy. Pick one.\nBear eats Ninja, Ninja defeats Cowboy, and Cowboy shoots Bear.\nMake your choice and be quick about it - you will lose all the same."
         )
 
-
+# Ask for role selection until an allowed role is selected
 def get_role():
     allowed_role = False
     while allowed_role == False:
-        role = input("\nBear, Ninja, or Cowboy? > ")
+        # I want to make sure only the first character is capitalized
+        role = input("\nBear, Ninja, or Cowboy? > ").lower().capitalize()
+        # Check if inputted role exists
         if role in roles:
             allowed_role = True
         else:
@@ -25,23 +27,23 @@ def get_role():
 def assign_role():
     return roles[randint(0, 2)]
 
-
+# Calculates score and shows score progression
 def new_score(score, points):
-    score = score + points
+    score += points
     print(f"You get {points} point. Your score is now {score}")
     return score
 
-
+# Show end game stats
 def end_game_stats(score):
     print(f"\nYour final score is {score}")
     if score == 0:
-        print("It's like you never played")
+        print("It's like you never even played")
     elif score > 0:
         print("At least you can do something right")
     else:
         print("SAD")
 
-
+# Main game loop
 def start_game():
     player = False
     score = 0
@@ -54,24 +56,24 @@ def start_game():
             print("DRAW!")
         elif computer == "Cowboy":
             if player == "Bear":
-                print("You lose!", player, "is shot by", computer)
+                print("You lose!", player, "is shot by", computer, "- Ouch!")
                 score = new_score(score, -1)
             else:
-                print("You win!", player, "eats", computer)
+                print("You win!", player, "defeats", computer, "- Woosh!")
                 score = new_score(score, 1)
         elif computer == "Bear":
             if player == "Cowboy":
-                print("You win!", player, "shoots", computer)
+                print("You win!", player, "shoots", computer, "- Ouch!")
                 score = new_score(score, 1)
             else:
-                print("You lose!", player, "is eaten by", computer)
+                print("You lose!", player, "is eaten by", computer, "- Yum!")
                 score = new_score(score, -1)
         elif computer == "Ninja":
             if player == "Cowboy":
-                print("You lose!", player, "is defeated by", computer)
+                print("You lose!", player, "is defeated by", computer, "- Woosh!")
                 score = new_score(score, -1)
             else:
-                print("You win!", player, "eats", computer)
+                print("You win!", player, "eats", computer, "- Yum!")
                 score = new_score(score, 1)
 
         play_again = input("\nWould you like to play again? (Y/N) > ")
@@ -79,6 +81,7 @@ def start_game():
             player = False
             computer = assign_role()
         else:
+            print('Out with you!')
             break
     return score
 
@@ -88,9 +91,3 @@ instructions()
 final_score = start_game()
 end_game_stats(final_score)
 print("Game Over")
-
-# Stretch Challenges
-# Try these ideas:
-
-# Comment your code! Pay close attention to the formatting and code blocks.
-# Expand the game. Look up Rock, Paper, Scissors, Lizard, Spock. This is the same game but has five possible plays. Rock < Paper < Scissors < Lizard < Spock < Rock.
